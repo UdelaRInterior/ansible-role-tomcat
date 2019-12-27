@@ -179,3 +179,12 @@
         state: present
       notify: Restart Tomcat
   when: tomcat_catalina_classpath | length > 0
+
+- name: LINEINFILE | Add classpath to setenv.sh
+  lineinfile:
+    dest: "{{ tomcat_catalina_base }}/bin/setenv.sh"
+    line: JRE_HOME="{{ tomcat_catalina_java_home }}"
+    regexp: "^JRE_HOME="
+    state: present
+  when: tomcat_catalina_java_home is defined
+

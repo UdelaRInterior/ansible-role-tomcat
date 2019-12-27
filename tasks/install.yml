@@ -33,7 +33,7 @@
   notify: Restart Tomcat
 
 - name: Necessary Dirs
-  become:
+  become: true
   file:
     path: "{{ item }}"
     state: directory
